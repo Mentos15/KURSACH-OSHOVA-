@@ -102,12 +102,12 @@ namespace Out
 
 			if (idtable.table[i].iddatatype == 1)
 			{
-				*out.stream << " integer \t \t";
+				*out.stream << " chislovoe \t \t";
 
 			}
 			if (idtable.table[i].iddatatype == 2)
 			{
-				*out.stream << "string \t \t";
+				*out.stream << "strokovoe \t \t";
 
 			}
 			*out.stream << "\t\t";

@@ -56,4 +56,5 @@ bool substrr(char* k);
 bool vosmer(char* k);
 bool rand(char* k);
 bool upp(char* k);
+bool cycle(char* k);
 

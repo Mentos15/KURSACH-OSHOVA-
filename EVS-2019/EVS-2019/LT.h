@@ -14,6 +14,7 @@
 #define LEX_SEMICOLON	';'			// лексема для ;
 #define LEX_COMMA		','			// лексема для ,
 #define LEX_LEFTBRACE	'{'			// лексема для {
+#define LEX_CYCLE		'c'			// лексема для cycle
 #define LEX_BRACELET	'}'			// лексема для }
 #define LEX_LEFTHESIS	'('			// лексема для (
 #define LEX_RIGHTHESIS	')'			// лексема для )
@@ -27,6 +28,8 @@
 #define LEX_VOSMER		'l'
 #define LEX_RAND		'i'
 #define LEX_UPP			'i'
+#define LEX_$			'$'
+
 
 namespace LT						// таблица лексем
 {
@@ -36,6 +39,7 @@ namespace LT						// таблица лексем
 		int sn;						// номер строки в исходном тексте
 		int idxTI;					// индекс в таблице идентификаторов или LT_TI_NULLIDX
 		char znak[1];
+		int kolpar;					// количество параметров в функции(для польской записи)
 		int opr;					// помогает отличить integer от string
 	};
 

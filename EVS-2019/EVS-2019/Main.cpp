@@ -427,10 +427,10 @@ int wmain(int argc, wchar_t* argv[])
 		out = Out::getout(parm.out);
 		
 
-		MFST::Mfst mfst(lextable, GRB::getGreibach());
+		/*MFST::Mfst mfst(lextable, GRB::getGreibach());
 		mfst.start();
 		mfst.savededucation();
-		mfst.printrules();
+		mfst.printrules();*/
 
 		PolishNotation(lextable); // сделать для функий маст хэв
 		WriteInOut(out, in, lextable, idtable);

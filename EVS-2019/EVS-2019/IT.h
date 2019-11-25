@@ -23,7 +23,12 @@ namespace IT						// таблица идентификаторов
 		char namefun[5];
 		union
 		{
-			int vint;				// значение integer
+			struct
+			{
+				int ten;
+				char vosmer;
+			}vint;
+			 				// значение integer
 			struct
 			{
 				char len;			// количество символов в string

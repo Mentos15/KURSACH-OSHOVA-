@@ -11,7 +11,7 @@ bool PolishNotation( LT::LexTable& lextable)
 	stack<LT::Entry> stack1;
 	stack<LT::Entry> stack2;
 	stack<LT::Entry> stack3;
-	
+	int commanumber = 0;
 	char PolMass[5];
 	bool ostalsa = true;
 	
@@ -29,7 +29,7 @@ bool PolishNotation( LT::LexTable& lextable)
 			i++;
 
 
-			while (lextable.table[i - 1].lexema[0] != ';')
+			while (lextable.table[i - 1].lexema[0] != LEX_SEMICOLON)
 			{
 
 				if (lextable.table[i].lexema[0] == 'i' || lextable.table[i].lexema[0] == 'l')
@@ -115,13 +115,25 @@ bool PolishNotation( LT::LexTable& lextable)
 							}
 							else if (stack1.top().znak[0] == '(')
 							{
+								if (commanumber != 0) {
+									LT::Entry entry;
+									entry.lexema[0] = '@';
+									entry.sn = lextable.table[i].sn;	// запоминаю строку, чтобы вставить сабаку
+									entry.kolpar = commanumber;			// закидываю в сабаку количество параметров в функции
+									stack2.push(entry);
+									commanumber = 0;
+								}
 								stack1.pop();
 								ostalsa = false;
 
 							}
+							else if (stack1.top().znak[0] == ',') {
+								commanumber++;
+								stack1.pop();
+							}
 
 						}break;
-						case ';':
+						case LEX_SEMICOLON:
 						{
 							if (temp.lexema[0] == '=')
 							{
@@ -141,6 +153,10 @@ bool PolishNotation( LT::LexTable& lextable)
 							}
 							konec = i;
 						}break;
+						case ',':
+							stack1.push(lextable.table[i]);
+							ostalsa = false;
+							break;
 						}
 					}
 				}

@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClCompile Include="Error.cpp" />
     <ClCompile Include="FST.cpp" />
+    <ClCompile Include="GenericCode.cpp" />
     <ClCompile Include="Grebach.cpp" />
     <ClCompile Include="In.cpp" />
     <ClCompile Include="IT.cpp" />
@@ -133,6 +134,7 @@
   <ItemGroup>
     <ClInclude Include="Error.h" />
     <ClInclude Include="FST.h" />
+    <ClInclude Include="GenericCode.h" />
     <ClInclude Include="Grebach.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="In.h" />

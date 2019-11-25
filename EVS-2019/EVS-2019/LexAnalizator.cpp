@@ -90,6 +90,10 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 		{
 			cas = 12;
 		}
+		if (cycle(mass) == true)
+		{
+			cas = 13;
+		}
 		switch (cas)
 		{
 		case 1:
@@ -171,6 +175,10 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 		{
 			Add(lextable, { LEX_UPP , lines,  LT_TI_NULLIDX }); flag = true;
 		}break;
+		case 13:
+		{
+			Add(lextable, { LEX_CYCLE , lines,  LT_TI_NULLIDX }); flag = true;
+		}break;
 		}
 
 
@@ -236,11 +244,11 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 						if (lextable.table[lextable.size - 3].lexema[0] == 'f')
 						{
 							temp->idtype = IT::IDTYPE(2);
-							if (lextable.table[lextable.size - 3].opr == 1)
+							if (lextable.table[lextable.size - 2].opr == 1)
 							{
 								temp->iddatatype = IT::IDDATATYPE(1);
 							}
-							if (lextable.table[lextable.size - 3].opr == 2)
+							if (lextable.table[lextable.size - 2].opr == 2)
 							{
 								temp->iddatatype = IT::IDDATATYPE(2);
 							}
@@ -250,7 +258,7 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 							}
 						}
 
-						if (lextable.table[lextable.size - 2].lexema[0] == 't')
+						if (lextable.table[lextable.size - 2].lexema[0] == 't' && lextable.table[lextable.size - 3].lexema[0] != 'f')
 						{
 							temp->idtype = IT::IDTYPE(1);
 							if (lextable.table[lextable.size - 2].opr == 1)
@@ -281,7 +289,8 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 						{
 							temp->namefun[j + dlinnaFun] = '\0';
 						}
-						temp->value.vint = TI_INT_DEFAULT;
+						temp->value.vint.ten = TI_INT_DEFAULT;
+						temp->value.vint.vosmer = TI_INT_DEFAULT;
 						temp->value.vstr.len = 0;
 						temp->value.vstr.str[0] = TI_STR_DEFAULT;
 						IT::Add(idtable, *temp);
@@ -365,7 +374,6 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 						{
 							if ((strcmp(idtable.table[i].namefun, HelpNameFun) == 0 && strcmp(mass, idtable.table[i].id) == 0 && idtable.table[i].idtype != 2) || (strcmp(idtable.table[i].id, idtable.table[i].namefun) == 0 && strcmp(mass, idtable.table[i].id) == 0))
 							{
-
 								numb = i;
 								break;
 							}
@@ -460,17 +468,18 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 			}
 		}
 
-		if (mass[k - 1] == ';') cas = 13;
-		if (mass[k - 1] == ',') cas = 14;
-		if (mass[k - 1] == ')') cas = 15;
-		if (mass[k - 1] == '+') cas = 16;
-		if (mass[k - 1] == '-') cas = 17;
-		if (mass[k - 1] == '*') cas = 18;
-		if (mass[k - 1] == '/') cas = 19;
-		if (mass[k - 1] == '=') cas = 20;
-		if (mass[k - 1] == '{') cas = 21;
-		if (mass[k - 1] == '}') cas = 22;
-		if (mass[k - 1] == '(') cas = 23;
+		if (mass[k - 1] == ';') cas = 14;
+		if (mass[k - 1] == ',') cas = 15;
+		if (mass[k - 1] == ')') cas = 16;
+		if (mass[k - 1] == '+') cas = 17;
+		if (mass[k - 1] == '-') cas = 18;
+		if (mass[k - 1] == '*') cas = 19;
+		if (mass[k - 1] == '/') cas = 20;
+		if (mass[k - 1] == '=') cas = 21;
+		if (mass[k - 1] == '{') cas = 22;
+		if (mass[k - 1] == '}') cas = 23;
+		if (mass[k - 1] == '(') cas = 24;
+		if (mass[k - 1] == '$') cas = 25;
 		if (mass[k - 1] == ' ')
 		{
 			flag = true;
@@ -488,53 +497,57 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 		{
 
 
-		case 13:
+		case 14:
 		{
 			Add(lextable, { LEX_SEMICOLON, lines, LT_TI_NULLIDX,';' }); flag = true;
 		}break;
-		case 14:
+		case 15:
 		{
 			Add(lextable, { LEX_COMMA, lines, LT_TI_NULLIDX,',' }); flag = true;
 		}break;
-		case 15:
+		case 16:
 		{
 			Add(lextable, { LEX_RIGHTHESIS, lines, LT_TI_NULLIDX, ')' }); flag = true;
 		}break;
-		case 16:
+		case 17:
 		{
 			Add(lextable, { LEX_PLUS, lines, LT_TI_NULLIDX, '+' }); flag = true;
 		}break;
-		case 17:
+		case 18:
 		{
 			Add(lextable, { LEX_MINUS, lines, LT_TI_NULLIDX, '-' }); flag = true;
 		}break;
-		case 18:
+		case 19:
 		{
 			Add(lextable, { LEX_STAR, lines, LT_TI_NULLIDX ,'*'}); flag = true;
 		}break;
-		case 19:
+		case 20:
 		{
 			Add(lextable, { LEX_DIRSLASH, lines, LT_TI_NULLIDX,'/' }); flag = true;
 		}break;
-		case 20:
+		case 21:
 		{
 			Add(lextable, { LEX_EQUALLY, lines, LT_TI_NULLIDX, '=' }); flag = true;
 		}break;
-		case 21:
+		case 22:
 		{
 			Add(lextable, { LEX_LEFTBRACE, lines, LT_TI_NULLIDX,'{' }); flag = true;
 			schetlefigskobok++;
 		}break;
-		case 22:
+		case 23:
 		{
 			Add(lextable, { LEX_BRACELET, lines, LT_TI_NULLIDX,'}' }); flag = true;
 			dlinnaFun = 0;
 			schetchikFun++;
 			schetprfigskobok++;
 		}break;
-		case 23:
+		case 24:
 		{
 			Add(lextable, { LEX_LEFTHESIS, lines, LT_TI_NULLIDX,'(' }); flag = true;
+		}break;
+		case 25:
+		{
+			Add(lextable, { LEX_$, lines, LT_TI_NULLIDX,'$' }); flag = true;
 		}break;
 		}
 
