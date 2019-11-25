@@ -88,7 +88,10 @@ namespace Out
 				*out.stream << " Литерал \t \t";
 				if (idtable.table[i].iddatatype == 1)
 				{
-					*out.stream << idtable.table[i].value.vint << "\t \t";
+					if(idtable.table[i].systema == 1)
+						*out.stream << idtable.table[i].value.vint.ten << "\t \t";
+					if (idtable.table[i].systema == 2)
+						*out.stream << idtable.table[i].value.vint.vosmer << "\t \t";
 
 				}
 				if (idtable.table[i].iddatatype == 2)

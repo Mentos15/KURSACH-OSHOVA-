@@ -12,21 +12,24 @@ namespace IT						// таблица идентификаторов
 {
 	enum IDDATATYPE {CHISL=1, STOK=2};		// типы данных идентификаторов: integer, string
 	enum IDTYPE	{V=1, F=2, P=3, L=4};	// типы идентификаторов: переменная, функция, параметр, литерал
+	enum SystSchisl {Ten = 1, Vosmer = 2};
 	struct Entry					// строка таблицы идентификаторов
 	{
 		int idxfirstLE;
 		char id[ID_MAXSIZE];		// идентификатор (автоматически усекается до ID_MAXSIZE)
 		IDDATATYPE iddatatype;		// тип данных
 		IDTYPE	idtype;				// тип идентификатора
+		SystSchisl systema;			// для определения системы считсления
 		int podschet;
 		int litschet;
 		char namefun[5];
+		int kolparfun;				// поле где зраниться количество параметров функции
 		union
 		{
 			struct
 			{
 				int ten;
-				char vosmer;
+				char vosmer[20];
 			}vint;
 			 				// значение integer
 			struct
@@ -67,5 +70,6 @@ namespace IT						// таблица идентификаторов
 	);
 	int IsLitSTR(IdTable& idtable, char lit[ID_MAXSIZE]);
 	int IsLitINT(IdTable& idtable, char lit[ID_MAXSIZE],int k);
+	int IsLitVosmer(IdTable& idtable, char lit[ID_MAXSIZE], int k);
 	void Delete(IdTable& lextable);	// удалить таблицу идентификаторов (освободить память)
 };

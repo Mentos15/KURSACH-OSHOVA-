@@ -48,8 +48,24 @@ namespace IT
 		}
 		int time = atoi(str.c_str());
 		for (int i = 0; i < idtable.size; i++) {
-			if (idtable.table[i].value.vint == time )
+			if (idtable.table[i].value.vint.ten == time )
 				return i;
+		}
+		return TI_NULLIDX;
+	}
+	int IsLitVosmer(IdTable& idtable, char lit[ID_MAXSIZE], int k) {
+		std::string str = "";
+		int q = 0;
+		for (int i = 0; i < k; i++)
+		{
+			str += lit[i];
+		
+		}
+		for (int i = 0; i < idtable.size; i++) {
+			if (idtable.table[i].value.vint.vosmer == str)
+			{
+				return i;
+			}
 		}
 		return TI_NULLIDX;
 	}

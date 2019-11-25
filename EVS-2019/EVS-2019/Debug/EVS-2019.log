@@ -1,12 +1,14 @@
-﻿Сборка начата 23.11.2019 0:16:24.
+﻿Сборка начата 26.11.2019 2:21:33.
      1>Проект "C:\Users\Виталий\ЯП 2 Курс\Kursovoi Proekt(OSNOVA)\EVS-2019\EVS-2019\EVS-2019.vcxproj" в узле 2 (целевые объекты Build).
      1>InitializeBuildStatus:
          Создание "Debug\EVS-2019.tlog\unsuccessfulbuild", так как было задано "AlwaysCreate".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /sdl /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt PolishNatation.cpp
-         PolishNatation.cpp
-     1>c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\polishnatation.cpp(15): warning C4101: PolMass: неиспользованная локальная переменная
-     1>c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\polishnatation.cpp(221): warning C4715: PolishNotation: значение возвращается не при всех путях выполнения
+         C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\CL.exe /c /ZI /JMC /nologo /W3 /WX- /diagnostics:classic /sdl /Od /Oy- /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /permissive- /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\" /Fd"Debug\vc141.pdb" /Gd /TP /analyze- /FC /errorReport:prompt LexAnalizator.cpp
+         LexAnalizator.cpp
+     1>c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(671): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "ERROR_THROW"
+     1>c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(675): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "ERROR_THROW"
+     1>c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(29): warning C4101: type: неиспользованная локальная переменная
+     1>c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(28): warning C4101: datatype: неиспользованная локальная переменная
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\VC\Tools\MSVC\14.16.27023\bin\HostX86\x86\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Виталий\ЯП 2 Курс\Kursovoi Proekt(OSNOVA)\EVS-2019\Debug\EVS-2019.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG:FASTLINK /PDB:"C:\Users\Виталий\ЯП 2 Курс\Kursovoi Proekt(OSNOVA)\EVS-2019\Debug\EVS-2019.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Виталий\ЯП 2 Курс\Kursovoi Proekt(OSNOVA)\EVS-2019\Debug\EVS-2019.lib" /MACHINE:X86 Debug\Error.obj
          Debug\FST.obj
@@ -33,10 +35,12 @@
 
        "C:\Users\Виталий\ЯП 2 Курс\Kursovoi Proekt(OSNOVA)\EVS-2019\EVS-2019\EVS-2019.vcxproj" (целевой объект Build ) (1) ->
        (ClCompile конечный объект) -> 
-         c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\polishnatation.cpp(15): warning C4101: PolMass: неиспользованная локальная переменная
-         c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\polishnatation.cpp(221): warning C4715: PolishNotation: значение возвращается не при всех путях выполнения
+         c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(671): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "ERROR_THROW"
+         c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(675): warning C4002: слишком много аргументов для вызова макроса, подобного функции, "ERROR_THROW"
+         c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(29): warning C4101: type: неиспользованная локальная переменная
+         c:\users\виталий\яп 2 курс\kursovoi proekt(osnova)\evs-2019\evs-2019\lexanalizator.cpp(28): warning C4101: datatype: неиспользованная локальная переменная
 
-    Предупреждений: 2
+    Предупреждений: 4
     Ошибок: 0
 
-Прошло времени 00:00:03.66
+Прошло времени 00:00:02.86

@@ -164,7 +164,43 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 		}break;
 		case 10:
 		{
-			Add(lextable, { LEX_VOSMER , lines,  LT_TI_NULLIDX }); flag = true;
+			if (IsLitVosmer(idtable, mass, k) == TI_NULLIDX)
+			{
+				Add(lextable, { LEX_VOSMER , lines, identificators }); flag = true;
+				identificators++;
+				for (int i = 0; i < k; i++)
+				{
+					str += mass[i];
+				}
+				for (int i = 0; i < dlinnaFun; i++)
+				{
+					temp->namefun[i] = HelpNameFun[i];
+				}
+				for (int j = 0; j < 5; j++)
+				{
+					temp->namefun[j + dlinnaFun] = '\0';
+				}
+				if (lextable.table[lextable.size - 4].lexema[0] == 't')
+				{
+
+					if (lextable.table[lextable.size - 4].opr == 2)
+					{
+						throw ERROR_THROW_IN(118, lines, lextable.size);
+					}
+
+				}
+				strcpy(temp->value.vint.vosmer, str.c_str());
+				temp->idtype = IT::IDTYPE(4);
+				temp->iddatatype = IT::IDDATATYPE(1);
+				temp->systema = IT::SystSchisl(2);
+				IT::Add(idtable, *temp);
+				str = "";
+			}
+			else
+			{
+				Add(lextable, { LEX_VOSMER , lines, IsLitSTR(idtable,mass) }); flag = true;
+			}
+			
 
 		}break;
 		case 11:
@@ -197,7 +233,8 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 
 					if (lextable.table[lextable.size - 2].lexema[0] == 'f')
 					{
-
+						
+						
 						for (int j = 0; j < 5; j++)
 						{
 							temp->namefun[j] = '\0';
@@ -238,7 +275,7 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 						{
 							temp->namefun[i] = HelpNameFun[i];
 						}
-
+						
 						temp->podschet = dop;
 						dop = 0;
 						if (lextable.table[lextable.size - 3].lexema[0] == 'f')
@@ -290,7 +327,7 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 							temp->namefun[j + dlinnaFun] = '\0';
 						}
 						temp->value.vint.ten = TI_INT_DEFAULT;
-						temp->value.vint.vosmer = TI_INT_DEFAULT;
+						
 						temp->value.vstr.len = 0;
 						temp->value.vstr.str[0] = TI_STR_DEFAULT;
 						IT::Add(idtable, *temp);
@@ -416,9 +453,10 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 						}
 
 					}
-					temp->value.vint = atoi(str.c_str());
+					temp->value.vint.ten = atoi(str.c_str());
 					temp->idtype = IT::IDTYPE(4);
 					temp->iddatatype = IT::IDDATATYPE(1);
+					temp->systema = IT::SystSchisl(1);
 					IT::Add(idtable, *temp);
 					str = "";
 				}
@@ -571,7 +609,62 @@ void lex(In::IN in, LT::LexTable &lextable, IT::IdTable &idtable)
 
 		delete temp;
 	}
-	
+	/*int p=0;
+	for (int i = 0; i < lextable.size; i++)
+	{
+		if (lextable.table[i].lexema[0] == 'i')
+		{
+			if (lextable.table[i + 1].lexema[0] == '(')
+			{
+				p = i;
+				p++;
+				while (lextable.table[p].lexema[0] != ')')
+				{
+					if (lextable.table[i+2].lexema[0] == ')')
+					{
+						KolParFun = 0;
+						break;
+					}
+					else
+					{
+						if ((lextable.table[p + 2].lexema[0] == 'i' || lextable.table[p + 1].lexema[0] == 'i') && (lextable.table[p + 2].lexema[0] == ')' || lextable.table[p + 3].lexema[0] == ')'))
+						{
+							KolParFun++;
+						}
+						if (lextable.table[p].lexema[0] == ',')
+						{
+							KolParFun++;
+						}
+					}
+					p++;
+				}
+
+				idtable.table[lextable.table[i].idxTI].kolparfun = KolParFun;
+			}
+		}
+	}*/
+	char upp[] = { 'u', 'p', 'p', '\0' };
+	char ran[] = { 'r', 'a', 'n', 'd', '\0' };
+	int KolParFun = 0;
+	int numfun;
+	for (int i = 0; i < idtable.size; i++)
+	{
+		if (idtable.table[i].idtype == IT::F &&
+			strcmp(idtable.table[i].id, upp) != 0 &&
+			strcmp(idtable.table[i].id, ran) != 0)
+		{
+			numfun = i;
+			i++;
+			while (idtable.table[i].idtype == IT::P)
+			{
+				KolParFun++;
+				i++;
+			}
+			idtable.table[numfun].kolparfun = KolParFun;
+			KolParFun = 0;
+			
+		}
+	}
 	if (schetlefigskobok > schetprfigskobok)
 	{
 		throw ERROR_THROW(115, lines, lextable.size);
